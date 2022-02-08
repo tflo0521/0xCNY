@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import {ADDRESS, ABI} from "../config.js"
 
-  export default function publicMint() {
+  export default function publicSaleMint() {
 
   // FOR WALLET
   const [signedIn, setSignedIn] = useState(false)
@@ -82,13 +82,13 @@ import {ADDRESS, ABI} from "../config.js"
  
       const price = Number(publicPrice)  * how_many_0xCny 
 
-      const gasAmount = await 0xCnyContract.methods.publicMint0xCny(how_many_0xCny).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await 0xCnyContract.methods.publicSaleMint0xCny(how_many_0xCny).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
       0xCnyContract.methods
-            .publicMint0xCny(how_many_0xCny)
+            .publicSaleMint0xCny(how_many_0xCny)
             .send({from: walletAddress, value: price, gas: String(gasAmount)})
             .on('transactionHash', function(hash){
               console.log("transactionHash", hash)
