@@ -62,15 +62,12 @@ import {ADDRESS, ABI} from "../config.js"
     setSignedIn(false)
   }
   
-  async function callContractData(wallet) {
+async function callContractData(wallet) {
     // let balance = await web3.eth.getBalance(wallet);
     // setWalletBalance(balance)
     const xCnyContract = new window.web3.eth.Contract(ABI, ADDRESS)
     setxCnyContract(xCnyContract)
-
-    const salebool = await xCnyContract.methods.saleIsActive().call() 
-    // console.log("saleisActive" , salebool)
-    setSaleStarted(salebool)
+    setSaleStarted(true)
 
     const totalSupply = await xCnyContract.methods.totalSupply().call() 
     setTotalSupply(totalSupply)
