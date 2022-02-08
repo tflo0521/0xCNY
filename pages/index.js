@@ -20,7 +20,7 @@ import {ADDRESS, ABI} from "../config.js"
 
   const [totalSupply, setTotalSupply] = useState(0)
 
-  const [saleStarted, setSaleStarted] = useState(false)
+  const [saleStarted, setSaleStarted] = useState(true)
 
   const [publicPrice, setpublicPrice] = useState(0)
 
