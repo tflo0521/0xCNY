@@ -12,7 +12,7 @@ import {ADDRESS, ABI} from "../config.js"
   const [walletAddress, setWalletAddress] = useState(null)
 
   // FOR MINTING
-  const [how_many_xCny, set_how_many_xCny] = useState(1)
+  const [how_many_tokens, set_how_many_tokens] = useState(1)
 
   const [xCnyContract, setxCnyContract] = useState(null)
 
@@ -153,8 +153,8 @@ async function mintpublic(how_many_tokens) {
                                       type="number" 
                                       min="1"
                                       max="3"
-                                      value={how_many_xCny}
-                                      onChange={ e => set_how_many_xCny(e.target.value) }
+                                      value={how_many_tokens}
+                                      onChange={ e => set_how_many_tokens(e.target.value) }
                                       name="" 
                                       className="PalatinoLinotype pl-4 text-4xl  inline bg-grey-lighter  py-2 font-normal rounded text-grey-darkest  font-bold"
                                   />
