@@ -75,16 +75,16 @@ async function callContractData(wallet) {
   }
   
 async function mintpublic(how_many_tokens) {
-    if (cnyContract) {
+    if (xCnyContract) {
  
       const price = Number(price)  * how_many_tokens
 
-      const gasAmount = await cnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await xCnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
-      cnyContract.methods
+      xCnyContract.methods
             .publicSaleMint(how_many_tokens)
             .send({from: walletAddress, value: price, gas: String(gasAmount)})
             .on('transactionHash', function(hash){
@@ -97,7 +97,6 @@ async function mintpublic(how_many_tokens) {
     }
     
   };
-
 
 
   return (
@@ -163,7 +162,7 @@ async function mintpublic(how_many_tokens) {
     
                 </div>
                 {saleStarted ? 
-                <button onClick={() => mintpublic(cnyContract)} className="mt-4 PalatinoLinotype text-2xl rounded-full border-6 bg-white text-black py-4 px-6 hover:text-red-900 ">MINT</button>        
+                <button onClick={() => mintpublic(how_many_xCny) className="mt-4 PalatinoLinotype text-2xl rounded-full border-6 bg-white text-black py-4 px-6 hover:text-red-900 ">MINT</button>        
                   : <button className="mt-4 PalatinoLinotype rounded-full text-2xl border-6 bg-white py-4 px-8 text-black hover:text-red-900">SALE IS NOT ACTIVE OR NO WALLET IS CONNECTED</button>        
             
               }
