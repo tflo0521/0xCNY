@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import {ADDRESS, ABI} from "../config.js"
 
-  export default function publicSaleMint() {
+  export default function publicMint() {
 
   // FOR WALLET
   const [signedIn, setSignedIn] = useState(false)
@@ -12,16 +12,16 @@ import {ADDRESS, ABI} from "../config.js"
   const [walletAddress, setWalletAddress] = useState(null)
 
   // FOR MINTING
-  const [how_many_0xCny, set_how_many_0xCny] = useState(1)
+  const [how_many_xCny, set_how_many_xCny] = useState(1)
 
-  const [0xCnyContract, set0xCnyContract] = useState(null)
+  const [xCnyContract, setxCnyContract] = useState(null)
 
   // INFO FROM SMART Contract
 
   const [totalSupply, setTotalSupply] = useState(0)
 
-  const [publicsaleStarted, setpublicSaleStarted] = useState(true)
-  
+  const [saleStarted, setSaleStarted] = useState(false)
+
   const [publicPrice, setpublicPrice] = useState(0)
 
   useEffect( async() => { 
@@ -65,29 +65,30 @@ import {ADDRESS, ABI} from "../config.js"
   async function callContractData(wallet) {
     // let balance = await web3.eth.getBalance(wallet);
     // setWalletBalance(balance)
-    const 0xCnyContract = new window.web3.eth.Contract(ABI, ADDRESS)
-    set0xCnyContract(0xCnyContract)
-    
-    const salebool = true
-    0xCnyContract.methods.publicsaleIsActive().call()
-    
-    const totalSupply = await 0xCnyContract.methods.totalSupply().call() 
+    const xCnyContract = new window.web3.eth.Contract(ABI, ADDRESS)
+    setxCnyContract(xCnyContract)
+
+    const salebool = await xCnyContract.methods.saleIsActive().call() 
+    // console.log("saleisActive" , salebool)
+    setSaleStarted(salebool)
+
+    const totalSupply = await xCnyContract.methods.totalSupply().call() 
     setTotalSupply(totalSupply)
 
   }
   
-  async function mint0xCny(how_many_0xCny) {
-    if (0xCnyContract) {
+  async function mintxCny(how_many_xCny) {
+    if (xCnyContract) {
  
-      const price = Number(publicPrice)  * how_many_0xCny 
+      const price = Number(publicPrice)  * how_many_xCny 
 
-      const gasAmount = await 0xCnyContract.methods.publicSaleMint0xCny(how_many_0xCny).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await xCnyContract.methods.publicMintxCny(how_many_xCny).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
-      0xCnyContract.methods
-            .publicSaleMint0xCny(how_many_0xCny)
+      xCnyContract.methods
+            .publicMintxCny(how_many_xCny)
             .send({from: walletAddress, value: price, gas: String(gasAmount)})
             .on('transactionHash', function(hash){
               console.log("transactionHash", hash)
@@ -153,7 +154,7 @@ import {ADDRESS, ABI} from "../config.js"
                   <input 
                                       type="number" 
                                       min="1"
-                                      max="3"
+                                      max="20"
                                       value={how_many_xCny}
                                       onChange={ e => set_how_many_xCny(e.target.value) }
                                       name="" 
