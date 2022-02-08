@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@tflo0521 
-tflo0521
-/
-0xCNY
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-0xCNY/pages/index.js /
-@tflo0521
-tflo0521 Update index.js
-Latest commit 735dfee 10 minutes ago
- History
- 2 contributors
-@tflo0521@vortextemporum
-177 lines (126 sloc)  7.12 KB
-   
 import Head from 'next/head'
 import Web3 from "web3";
 import { useState, useEffect } from 'react';
