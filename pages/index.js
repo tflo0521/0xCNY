@@ -68,9 +68,9 @@ import {ADDRESS, ABI} from "../config.js"
     const 0xCnyContract = new window.web3.eth.Contract(ABI, ADDRESS)
     set0xCnyContract(0xCnyContract)
 
-    const salebool = await 0xCnyContract.methods.saleIsActive().call() 
-    // console.log("saleisActive" , salebool)
-    setSaleStarted(true)
+    const salebool = await 0xCnyContract.methods.publicsaleIsActive().call() 
+    // console.log("publicsaleisActive" , salebool)
+    setpublicSaleStarted(true)
 
     const totalSupply = await 0xCnyContract.methods.totalSupply().call() 
     setTotalSupply(totalSupply)
