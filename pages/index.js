@@ -65,7 +65,7 @@ import {ADDRESS, ABI} from "../config.js"
     // setWalletBalance(balance)
     const 0xCnyContract = new window.web3.eth.Contract(ABI, ADDRESS)
     set0xCnyContract(0xCnyContract)
-
+    const salebool = true
     const totalSupply = await 0xCnyContract.methods.totalSupply().call() 
     setTotalSupply(totalSupply)
 
