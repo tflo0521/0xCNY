@@ -77,7 +77,7 @@ async function callContractData(wallet) {
 async function mintpublic(how_many_tokens) {
     if (xCnyContract) {
  
-      const price = Number(price)  * how_many_tokens
+      const price = Number(88000000000000000)  * how_many_tokens
       console.log("price" , price)
       const gasAmount = await xCnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
