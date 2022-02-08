@@ -77,24 +77,25 @@ import {ADDRESS, ABI} from "../config.js"
 
   }
   
-  async function mintxCny(how_many_xCny) {
-    if (xCnyContract) {
+async function mintpublic(how_many_tokens) {
+    if (cnyContract) {
  
-      const price = Number(publicPrice)  * how_many_xCny 
+      const price = Number(price)  * how_many_tokens
 
-      const gasAmount = await xCnyContract.methods.publicMintxCny(how_many_xCny).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await cnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
-      xCnyContract.methods
-            .publicMintxCny(how_many_xCny)
+      cnyContract.methods
+            .publicSaleMint(how_many_tokens)
             .send({from: walletAddress, value: price, gas: String(gasAmount)})
             .on('transactionHash', function(hash){
               console.log("transactionHash", hash)
             })
           
     } else {
+
         console.log("Wallet not connected")
     }
     
