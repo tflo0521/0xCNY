@@ -75,16 +75,16 @@ async function callContractData(wallet) {
   }
   
 async function mintpublic(how_many_tokens) {
-    if (cnyContract) {
+    if (xCnyContract) {
  
       const price = Number(price)  * how_many_tokens
 
-      const gasAmount = await cnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await xCnyContract.methods.publicSaleMint(how_many_tokens).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
-      cnyContract.methods
+      xCnyContract.methods
             .publicSaleMint(how_many_tokens)
             .send({from: walletAddress, value: price, gas: String(gasAmount)})
             .on('transactionHash', function(hash){
