@@ -20,8 +20,6 @@ import {ADDRESS, ABI} from "../config.js"
 
   const [totalSupply, setTotalSupply] = useState(0)
 
-  const [publicsaleStarted, setpublicSaleStarted] = useState(true)
-
   const [publicPrice, setpublicPrice] = useState(0)
 
   useEffect( async() => { 
