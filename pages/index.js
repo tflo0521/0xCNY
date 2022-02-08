@@ -153,7 +153,7 @@ import {ADDRESS, ABI} from "../config.js"
                   <input 
                                       type="number" 
                                       min="1"
-                                      max="20"
+                                      max="3"
                                       value={how_many_xCny}
                                       onChange={ e => set_how_many_xCny(e.target.value) }
                                       name="" 
