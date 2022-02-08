@@ -70,7 +70,7 @@ import {ADDRESS, ABI} from "../config.js"
 
     const salebool = await 0xCnyContract.methods.saleIsActive().call() 
     // console.log("saleisActive" , salebool)
-    setSaleStarted(salebool)
+    setSaleStarted(true)
 
     const totalSupply = await 0xCnyContract.methods.totalSupply().call() 
     setTotalSupply(totalSupply)
